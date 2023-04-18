@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@7.13.0",
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --filter web",
     "dev": "turbo dev --filter web",
     "clean:workspaces": "turbo clean",
     "clean": "rm -rf node_modules",
