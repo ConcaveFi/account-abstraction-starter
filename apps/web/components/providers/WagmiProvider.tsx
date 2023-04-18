@@ -31,7 +31,7 @@ const {
 
 const appName = 'Starter App'
 const AA_Options = {
-  projectId: 'b5486fa4-e3d9-450b-8428-646e757c10f6',
+  projectId: 'f1d73987-30a5-4fce-b3cc-343c339095de',
 } satisfies SocialWalletConnectorOptions
 
 const connectors = connectorsForWallets([
