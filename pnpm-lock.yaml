@@ -37,6 +37,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@babel/core':
+        specifier: ^7.21.4
+        version: 7.21.4
       '@pcnv/txs-react':
         specifier: ^0.0.7
         version: 0.0.7(@zag-js/react@0.5.0)(@zag-js/toast@0.6.0)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(wagmi@0.12.10)
