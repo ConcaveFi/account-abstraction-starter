@@ -19,6 +19,7 @@ function MintNft() {
   })
   const addTx = useAddRecentTransaction()
   const [isMinting, setMinting] = useState(false)
+  const { refetch } = useSampleNFTBalance()
   const { write: mint } = useContractWrite({
     ...config,
     chainId: polygonMumbai.id,
@@ -28,6 +29,7 @@ function MintNft() {
     onSuccess(tx) {
       tx.wait().then((param: any) => {
         setMinting(false)
+        refetch()
         addTx({
           hash: param.bundleTransactionHash as `0x${string}`,
           meta: { type: 'mint', name: 'Sample Nft' },
@@ -47,22 +49,25 @@ function MintNft() {
   )
 }
 
-function YourSampleNfts() {
+const useSampleNFTBalance = () => {
   const { address } = useAccount()
-
-  const { data: balance } = useContractRead({
+  return useContractRead({
     abi: sampleNft.abi,
     address: sampleNft.address[polygonMumbai.id],
     args: [address!],
     chainId: polygonMumbai.id,
     functionName: 'balanceOf',
-    watch: true,
     select: (b) => [b.toBigInt(), 0] as const,
   })
+}
+
+function YourSampleNfts() {
+  const { address } = useAccount()
+  const { data: balance } = useSampleNFTBalance()
 
   return (
     <a
-      className=" flex gap-2 rounded-xl p-2 pr-3 transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+      className="flex gap-2 rounded-xl p-2 pr-3 transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
       href={`https://mumbai.polygonscan.com/token/0x34be7f35132e97915633bc1fc020364ea5134863?a=${address}`}
     >
       <div className="bg-grey-200 h-8 w-8 rounded-lg" />
