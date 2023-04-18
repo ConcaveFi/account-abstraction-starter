@@ -12,10 +12,8 @@ module.exports = {
         sans: `var(--font-sans)`,
         mono: `var(--font-mono)`,
       },
-      borderRadius: {
-        sm: '10px',
-        md: '12px',
-        lg: '18px',
+      boxShadow: {
+        lg: '0px 4px 12px rgba(0, 0, 0, 0.1)',
       },
     },
   },

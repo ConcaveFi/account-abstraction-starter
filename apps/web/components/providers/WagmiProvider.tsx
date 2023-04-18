@@ -5,8 +5,7 @@ import {
   safeWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
-import { configureChains } from '@wagmi/core'
-import { goerli, optimismGoerli } from '@wagmi/core/chains'
+import { configureChains, Provider } from '@wagmi/core'
 import { alchemyProvider } from '@wagmi/core/providers/alchemy'
 import { SocialWalletConnectorOptions } from '@zerodevapp/wagmi/dist/connectors/AbstractSocialWalletConnector'
 import {
@@ -19,20 +18,22 @@ import {
 import { multicallProvider } from 'multicall-provider/wagmi'
 import { PropsWithChildren } from 'react'
 import { createClient, WagmiConfig } from 'wagmi'
+import { polygonMumbai } from 'wagmi/chains'
 
 const {
   chains,
   provider: _provider,
   webSocketProvider,
 } = configureChains(
-  [goerli, optimismGoerli],
+  [polygonMumbai],
   [alchemyProvider({ apiKey: 'Kng1p_dEJaldM51_qK6aqP9YvBY0cVxf' })],
 )
 
-const AA_Options = {
-  projectId: 'e0c46058-90cf-41ec-aa8a-8e4bc6897bd3',
-} satisfies SocialWalletConnectorOptions
 const appName = 'Starter App'
+const AA_Options = {
+  projectId: 'b5486fa4-e3d9-450b-8428-646e757c10f6',
+} satisfies SocialWalletConnectorOptions
+
 const connectors = connectorsForWallets([
   {
     groupName: 'Popular',
@@ -57,7 +58,12 @@ const connectors = connectorsForWallets([
 
 export type SupportedChainId = (typeof chains)[number]['id']
 
-export const provider = multicallProvider(_provider, { timeWindow: 0, batchSize: 150 })
+const provider = multicallProvider(_provider, { timeWindow: 50, batchSize: 500, logs: true })
+const singleton_providers: Record<number, Provider> = {}
+export const getProvider = ({ chainId }: { chainId: number }) => {
+  if (!singleton_providers[chainId]) singleton_providers[chainId] = provider({ chainId })
+  return singleton_providers[chainId]
+}
 
 const wagmiClient = createClient({
   autoConnect: true,
@@ -72,9 +78,7 @@ export function WagmiProvider({ children }: PropsWithChildren) {
       <RainbowKitProvider
         theme={{
           ...lightTheme(),
-          fonts: {
-            body: 'var(--font-sans)',
-          },
+          fonts: { body: 'var(--font-sans)' },
         }}
         chains={chains}
       >
