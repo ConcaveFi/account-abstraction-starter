@@ -40,9 +40,9 @@ function MintNft() {
 
   return (
     <button
-      disabled={isMinting}
+      disabled={true}
       onClick={() => mint?.()}
-      className="bg-primary disabled:text-grey-500 disabled:bg-grey-300 rounded-xl px-4 py-2 font-bold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100"
+      className="bg-primary disabled:text-grey-500 disabled:bg-grey-200 rounded-xl px-4 py-2 font-bold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] disabled:shadow-none disabled:hover:scale-100"
     >
       {isMinting ? 'Minting...' : 'Mint SampleNFT'}
     </button>
