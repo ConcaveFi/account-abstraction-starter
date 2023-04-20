@@ -42,11 +42,16 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.29.0",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.38.0",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-config-turbo": "latest",
+    "eslint-plugin-react": "latest",
     "postcss": "^8.4.22",
     "tailwindcss": "^3.3.1",
     "typescript": "^5.0.4"

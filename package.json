@@ -10,13 +10,13 @@
     "lint": "turbo lint && manypkg check",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "devDependencies": {
+  "dependencies": {
     "@manypkg/cli": "^0.20.0",
     "@next/eslint-plugin-next": "^13.3.0",
     "eslint-config-next": "^13.3.0",
     "eslint-config-turbo": "^1.9.3",
     "eslint-plugin-prettier": "^4.2.1",
-    "next": "13.3.0",
+    "next": "^13.3.0",
     "prettier": "^2.8.7",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-tailwindcss": "^0.2.7",
