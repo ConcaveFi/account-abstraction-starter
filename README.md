@@ -1,32 +1,53 @@
-## Starter web3 repo
+# Account Abstractions Starter
 
-This is a monorepo with `pnpm` workspaces and `turborepo`
+> NextJs monorepo for web3 account abstractions.
 
-```sh
-pnpm install
+## Stack Features
 
-# start apps/web dev server
-pnpm dev
-```
-
-### Stack
-
+- [Pnpm](https://pnpm.io/installation)
+- [Turbo](https://turbo.build/repo/docs/)
+- [Wagmi](https://wagmi.sh/core/getting-started)
 - [Tailwind](https://tailwindcss.com/)
-- [Wagmi](https://wagmi.sh)
 - [@tanstack/query](https://tanstack.com/query/v4)
 - [Dnum](https://github.com/bpierre/dnum)
-- [Zerodev](https://zerodev.app/)
 
-I'd recommend using [radix ui](https://www.radix-ui.com/) or [headless ui](https://headlessui.com/) for complex components like menus, tooltips etc
-and [jotai](jotai.org) for global state, ala [Conduit](https://github.com/ConcaveFi/conduit)
+- [Zerodev](https://zerodev.app/)
+  - [Web3Auth](https://web3auth.io/)
+  - [Safe](https://safe.global/)
+  - [Gelato](https://www.gelato.network/)
+
+Options for complex components:
+- [radix ui](https://www.radix-ui.com/)
+- [headless ui](https://headlessui.com/)
+- [jotai](jotai.org)
+
+### Contracts
+
+> See `contract.ts` and `abis.ts`, create a named export for each contract/abi instead of single export map, to ensure treeshaking works.
+
+> Check `WagmiProvider` for the `zerodev` config of the **account abstractions** sdk used to creates a smart wallet, session keys, batch transactions and sponsors the gas.
 
 ### Setup
 
-The Setup is pretty straight foward, very similar to `Conduit` but with Next `pages` instead of `app` dir
+```sh
+pnpm install
+pnpm dev
+```
+### Build & Deploy
 
-#### Contracts
+```sh
+pnpm build
+```
 
-There is a `contract.ts` and `abis.ts` add the top level, create a named export for each contract/abi instead of single export map, to ensure treeshaking works
+### Tests
 
-You can see in `WagmiProvider` the `zerodev` config, it's an account abstractions sdk, that creates a smart wallet, session keys, batch transactions and sponsors the gas
-It's early some stuff works weardly, if `zerodev` shows itself not to be relyabe, you can create a similar setup with [Web3Auth](https://web3auth.io/), [Safe](https://safe.global/) and [Gelato](https://www.gelato.network/)
+## Community
+
+Check out the following places for more content:
+
+- Twitter [@ConcaveFi](https://twitter.com/ConcaveFi)
+- Discord [concave](https://discord.gg/concave)
+
+## License
+
+[MIT](/LICENSE) License
